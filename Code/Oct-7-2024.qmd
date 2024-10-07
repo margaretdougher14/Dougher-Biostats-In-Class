@@ -49,3 +49,26 @@ tomatoes$Treatment <- factor(tomatoes$Treatment) #tells R to re-list the levels 
 levels(tomatoes$Treatment)
 ```
 
+Now look at summary function
+
+```{r}
+test <- c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
+summary(test)
+```
+
+```{r}
+grades <- c(90, 94, 96, 90, 84, 86)
+range <- max-min
+min <- 84
+max <- 96
+mean <- 90
+median <- 90
+firstqu <- range * (0.25) + min
+thirdqu <- max - range * (0.25)
+```
+
+```{r}
+summary(grades)
+quantile(grades, probs = c(0, 0.25, 0.5, 0.75, 1))
+```
+
