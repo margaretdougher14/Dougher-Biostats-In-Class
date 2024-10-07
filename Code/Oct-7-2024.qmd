@@ -1,0 +1,51 @@
+---
+title: "Oct-7-2024"
+author: "Margaret Dougher"
+format: html
+editor: visual
+---
+
+## Set things up
+
+```{r}
+rm(list=ls())
+library(here)
+library(tidyverse)
+```
+
+## Import data
+
+```{r}
+tomatoes <- read.csv(here("Data", "tomato_data.csv"))
+```
+
+## levels of treatment
+
+```{r}
+levels(tomatoes$Treatment)
+```
+
+## fix control
+
+```{r}
+fix <- which(tomatoes$Treatment == "control") #identified rows needing repair
+
+tomatoes$Treatment[fix] <- "Control"
+
+tomatoes$Treatment <- factor(tomatoes$Treatment) #tells R to re-list the levels of my factorw now that they have changes
+
+levels(tomatoes$Treatment)
+```
+
+## fix fertilizer
+
+```{r}
+fix1 <- which(tomatoes$Treatment == "fertilizer") #identified rows needing repair
+
+tomatoes$Treatment[fix1] <- "Fertilizer"
+
+tomatoes$Treatment <- factor(tomatoes$Treatment) #tells R to re-list the levels of my factorw now that they have changes
+
+levels(tomatoes$Treatment)
+```
+

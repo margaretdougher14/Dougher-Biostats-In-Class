@@ -1,0 +1,51 @@
+---
+title: "Oct-4-2024"
+author: "Margaret Dougher"
+format: html
+editor: visual
+---
+
+## Set things up
+
+```{r}
+rm(list=ls())
+library(here)
+library(tidyverse)
+```
+
+## Input Data
+
+```{r}
+drugs <- read.csv(here("Data", "drug_resistance.csv"))
+glimpse(drugs)
+```
+
+## Now make Treatment into a factor variable
+
+```{r}
+drugs$Treatment <- as.factor (drugs$Treatment)
+```
+
+## Now fix the treatment variable
+## Find the rows that have any version of "control"
+
+## Use which() function to do so
+
+```{r}
+fix <- which(drugs$Treatment %in% c("cantrol", "control", "Control")) #identify the rows that need repair
+
+drugs$Treatment[fix] <- "control"
+levels(drugs$Treatment)
+drugs$Treatment <- factor(drugs$Treatment) #this just tells R to re-list the levels of my factor now that they have changed
+levels(drugs$Treatment)
+```
+
+```{r}
+fix2 <- which(drugs$Treatment %in% c("drug x 2", "drug2", "Drugx2")) #identify the rows that need repair
+
+drugs$Treatment[fix2] <- "drug2"
+levels(drugs$Treatment)
+drugs$Treatment <- factor(drugs$Treatment)
+levels(drugs$Treatment)
+```
+
