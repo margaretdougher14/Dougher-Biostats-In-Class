@@ -27,6 +27,7 @@ drugs$Treatment <- as.factor (drugs$Treatment)
 ```
 
 ## Now fix the treatment variable
+
 ## Find the rows that have any version of "control"
 
 ## Use which() function to do so
@@ -48,4 +49,3 @@ levels(drugs$Treatment)
 drugs$Treatment <- factor(drugs$Treatment)
 levels(drugs$Treatment)
 ```
-

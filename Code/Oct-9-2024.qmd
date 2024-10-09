@@ -1,0 +1,30 @@
+---
+title: "Oct-9-2024"
+author: "Margaret Dougher"
+format: html
+editor: visual
+---
+
+## Set things up
+
+```{r}
+rm(list=ls())
+library(here)
+library(tidyverse)
+library(dplyr)
+```
+
+## Importing data
+
+```{r}
+tomatoes <- read.csv(here("Data", "tomato_data.csv"))
+```
+
+## Changing data
+
+```{r}
+tomatoes |> slice(c(3, 7, 9))
+
+tomatoes |> filter(Avg_tomato_weight_g >= 145)
+```
+
