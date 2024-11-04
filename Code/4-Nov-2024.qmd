@@ -1,0 +1,67 @@
+---
+title: "4-Nov-2024"
+author: "Margaret Dougher"
+format: html
+editor: visual
+---
+
+## Setting things up 
+```{r}
+rm(list=ls()) #clear R's brain
+library(here)
+library(tidyverse)
+library(ggfortify)
+```
+
+## Importing Data
+```{r}
+trees <- read.csv(here("Data", "Forest_Tree_DBH_F21.csv"))
+glimpse(trees)
+trees$Forest <- as.factor(trees$Forest)
+```
+
+## Plotting and examining the data
+```{r}
+ggplot(trees, aes(x = Forest, y = DBH_cm)) +
+  geom_boxplot() +
+  theme_bw() +
+  coord_flip()
+```
+
+## Constructing the ANOVA test
+```{r}
+model_trees <- lm(DBH_cm ~ Forest, data = trees)
+```
+
+## Checking assumptions
+```{r}
+autoplot(model_trees, smooth.colour = NA)
+```
+
+## Making an inference from a one-way ANOVA
+```{r}
+anova(model_trees)
+```
+
+## Using treatment contrasts
+```{r}
+summary(model_trees)
+```
+
+```{r}
+library(multcomp)
+```
+
+Let's conduct a Tukey's HSD (honestly significant differences) test.
+pch1 stands for post_hoc_comp.
+```{r}
+phc1 <- glht(model_trees, linfct = mcp(Forest = "Tukey"))
+summary(phc1)
+```
+
+We can also ask for a "compact letter display" of these results
+```{r}
+cld(phc1)
+```
+Forests that do not have the same letter are different. 
+
